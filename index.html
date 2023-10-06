@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <main class="main">
+      <!-- First Section: Music Player -->
+      <div class="player">
+        <!-- img part -->
+        <div class="song-img-container">
+          <img src="" alt="song img" />
+        </div>
+
+        <!-- title and artist name -->
+        <div class="title-artist-container">
+          <div class="song-title-container"><h4></h4></div>
+          <div class="song-artist-name-container"><p></p></div>
+        </div>
+
+        <!-- progress -->
+        <div class="song-progress-bar-container">
+          <div class="song-time">
+            <div class="current-time">00:00</div>
+            <div class="total-duration">00:00</div>
+          </div>
+          <input
+            id="progress-bar"
+            type="range"
+            min="0"
+            max="100"
+            value="0"
+            class="progress-bar"
+          />
+        </div>
+
+        <!-- controls -->
+        <div class="song-controls-container">
+          <i
+            class="fa-solid fa-backward-step"
+            style="cursor: pointer; font-size: 40px"
+          ></i>
+          <i
+            class="fa-solid fa-circle-play play-pause-button"
+            style="cursor: pointer; font-size: 75px"
+          ></i>
+          <i
+            class="fa-solid fa-forward-step"
+            style="cursor: pointer; font-size: 40px"
+          ></i>
+        </div>
+      </div>
+
+      <!-- Second Section: Catalogs -->
+      <div class="catalog">
+        <!-- Heading -->
+        <h2>Explore</h2>
+
+        <!-- Nav for Catalogs content -->
+        <div class="tab-buttons-container">
+          <a href="#" aria-label="lyrics-el">Lyrics</a>
+          <a href="#" aria-label="albums-el">Other Albums</a>
+          <a href="#" aria-label="artists-el">Related Artists</a>
+        </div>
+
+        <!-- Content -->
+        <div class="content-container">
+          <!-- lyrics -->
+          <div id="lyrics-el"></div>
+
+          <!-- albums -->
+          <div id="albums-el" class="d-none"></div>
+
+          <!-- Related Artists -->
+          <div id="artists-el" class="d-none"></div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

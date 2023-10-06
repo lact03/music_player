@@ -1,0 +1,191 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+/* main div */
+.main {
+  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
+  background: url("https://images.unsplash.com/photo-1474540412665-1cdae210ae6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1183&q=80")
+    no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* First section music player */
+.player {
+  background: #f9f3cc;
+  height: 70%;
+  aspect-ratio: 2/3;
+  border-radius: 20px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  filter: drop-shadow(-3px 5px 5px black);
+}
+
+/* music player img */
+.song-img-container {
+  height: 40%;
+  aspect-ratio: 4/3;
+}
+.song-img-container > img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+/* music player title */
+.title-artist-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* title font size */
+.song-title-container {
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+/* artist name font size */
+.song-artist-name-container {
+  font-size: 14px;
+}
+/* time font size */
+.song-time {
+  width: 100%;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+}
+
+/* music player progress bar */
+.song-progress-bar-container {
+  width: 100%;
+}
+
+/* custom input range */
+input[type="range"] {
+  -webkit-appearance: none;
+  margin-right: 15px;
+  width: 100%;
+  height: 3px;
+  background: #beadfa;
+  border-radius: 5px;
+  background-image: linear-gradient(#0f2c59, #0f2c59);
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background: #0f2c59;
+  cursor: pointer;
+  box-shadow: 0 0 2px 0 #555;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+/* music player controls*/
+.song-controls-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #0f2c59;
+  text-shadow: 0 0 3px black;
+}
+
+/* Second section Lyrics, Albums, Artist */
+.catalog {
+  width: 700px;
+  height: 70%;
+  padding: 0 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Nav container */
+.tab-buttons-container {
+  height: 20%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Nav links  */
+.tab-buttons-container > a {
+  text-decoration: none;
+  color: black;
+  margin-right: 30px;
+}
+
+/* content container */
+.content-container {
+  height: 80%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+}
+
+#lyrics-el {
+  grid-area: 1 / 1 / -1 / -1;
+  overflow-y: scroll;
+}
+#lyrics-el a {
+  text-decoration: none;
+  color: black;
+}
+
+#albums-el,
+#artists-el {
+  grid-area: 1 / 1 / -1 / -1;
+  display: flex;
+  overflow-x: scroll;
+}
+.album,
+.artist {
+  padding: 10px;
+}
+.album-image-container,
+.artist-image-container {
+  height: 250px;
+  aspect-ratio: 1;
+  margin-bottom: 20px;
+}
+.album-image-container > img,
+.artist-image-container > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.album > a,
+.artist > a {
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  margin-bottom: 5px;
+}
+.album-date {
+  font-style: italic;
+}
+
+.d-none {
+  display: none !important;
+}
