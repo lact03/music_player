@@ -34,7 +34,7 @@ const playPauseBtn = document.querySelector(".play-pause-button");
 const nextBtn = document.querySelector(".fa-forward-step");
 const prevBtn = document.querySelector(".fa-backward-step");
 
-// Add an event listener for the keydown event on the document
+// Add an event listener for the buttons: spaceBar, leftArrowKey, rightArrowKey
 document.addEventListener("keydown", (event) => {
   // Check if the event target is not an input element
   if (!event.target.tagName.toLowerCase().match(/input|textarea/)) {
@@ -64,113 +64,78 @@ let trackIndex = 0;
 let isPlaying = false;
 let updateTimeInterval;
 
-// hardcoded lyrics didn't know rapidApi has limit
-let lyrics = `[Intro]<br>(<i>Woo</i>)<br><br>[Verse 1]<br>He said, "Are you serious? I've tried, but I can't figure out<br>I've been next to you all night and still don't know what you're about<br>You keep ta- (Ta-ta-), talkin', but not much comin' out your mouth<br>Can't you tell that I want you?" I say, yeah<br><br>[Chorus]<br>I would want myself<br>Baby, please believe me<br>I'll put you through hell<br>Just to know me, yeah, yeah<br>So sure of yourself<br>Baby, don't get greedy<br>That shit won't end well<br>No, it won't end well<br>I'll put you through hell</span></a><br>Just to know me, yeah, yeah<br>So sure of yourself<br>Baby, don't get greedy<br>That shit won't end well<br>No, it won't end well<br><br>[Verse 3]<br>He said, "I'm just curious, is this for real or just an act?<br>Can't tell if you love or hate me, never met someone like that<br>Drive me so (So, so) crazy, did you know you got that effect?"<br>I said, "Lemme check", yeah<br><br>[Chorus]<br>I would want myself<br>Baby, please believe me<br>I'll put you through hell<br>Just to know me, yeah, yeah<br>So sure of yourself<br>Baby, don't get greedy<br>That shit won't end well<br>No, it won't end well<br><br>[Outro]<br>(I would want myself)<br>(I would want myself) I would want myself<br>(I would want myself)<br>(I would want myself)<br>(Uh-uh, uh-uh-uh, uh)`;
-
-// hardcoded data for rendering albums and related artists... CAN'T FETCH DATA
-const universalObject = {
-  external_urls: { spotify: "https://open.spotify.com/" },
-  images: [{ url: "https://static.asiachan.com/Lee.Hyein.full.322512.jpg" }],
-  name: "Ludowic",
-  releases: {
-    items: [
-      {
-        sharingInfo: { shareUrl: "https://open.spotify.com/" },
-        coverArt: {
-          sources: [
-            {},
-            {},
-            {
-              url: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/a120d164193929.5aca8500bb117.jpg",
-            },
-          ],
-        },
-        name: "Album Name",
-        date: {
-          year: "2000 2023",
-        },
-      },
-    ],
-  },
-};
-
 // stored data
 const musicList = [
   {
-    title: "Greedy",
+    title: "",
     audioLink: "https://audio.jukehost.co.uk/fgehcEedXugYdgH1yNLHJQ6nBcCuIgy0",
     songId: "9393794",
     artistId: "45dkTj5sMRSjrmBSBeiHym",
-    artistName: "Tate McRae",
-    imgUrl:
-      "https://images.genius.com/f99ff51104cac7cedc519ddcd93ab6b6.1000x1000x1.png",
-    lyrics,
-    albums: [
-      universalObject,
-      universalObject,
-      universalObject,
-      universalObject,
-    ],
-    relatedArtists: [universalObject, universalObject],
+    artistName: "",
+    imgUrl: "",
+    lyrics: "",
+    albums: [],
+    relatedArtists: [],
   },
   {
-    title: "Urong Sulong",
+    title: "",
     audioLink: "https://audio.jukehost.co.uk/NcuXammbGsxbxZ5lTBnZkmpNfKINxeVU",
     songId: "4479242",
     artistId: "4HPuFCMUiNcV4f3ew0flbZ",
-    artistName: "Alisson Shore",
-    imgUrl: "https://i.scdn.co/image/f5382705150e240f208add1c6b8eb9eb16eabb58",
-    lyrics,
-    albums: [universalObject, universalObject],
-    relatedArtists: [universalObject],
+    artistName: "",
+    imgUrl: "",
+    lyrics: "",
+    albums: [],
+    relatedArtists: [],
   },
   {
-    title: "Idontwannabeyouanymore",
+    title: "",
     audioLink: "https://audio.jukehost.co.uk/igeYuDDZ9fQCoU4iTIJBFLrRnfzUkpEI",
     songId: "3143252",
     artistId: "6qqNVTkY8uBg9cP3Jd7DAH",
-    artistName: "Billie Eilish",
-    imgUrl:
-      "https://www.euphoriazine.com/wp-content/uploads/2017/07/8d0502f7-2354-4b05-839f-0777e731dc6e.jpeg",
-    lyrics,
-    albums: [universalObject],
-    relatedArtists: [
-      universalObject,
-      universalObject,
-      universalObject,
-      universalObject,
-    ],
+    artistName: "",
+    imgUrl: "",
+    lyrics: "",
+    albums: [],
+    relatedArtists: [],
   },
 ];
+
+// rapid api key
+const rapidApiKey = "";
 
 // fetch data
 getData();
 async function getData() {
   for (let i = 0; i < musicList.length; i++) {
-    // const {
-    //   songApiConfig,
-    //   lyricsApiConfig,
-    //   albumsApiConfig,
-    //   relatedArtistsApiConfig,
-    // } = apiConfig(musicList[i]);
+    const {
+      songApiConfig,
+      lyricsApiConfig,
+      albumsApiConfig,
+      relatedArtistsApiConfig,
+    } = apiConfig(musicList[i]);
 
     try {
-      // const [songData, lyricsData, albumsData, relatedArtistsData] =
-      //   await Promise.all([
-      //     axios(songApiConfig),
-      //     axios(lyricsApiConfig),
-      //     axios(albumsApiConfig),
-      //     axios(relatedArtistsApiConfig),
-      //   ]);
-      // musicList[i] = {
-      //   ...musicList[i],
-      //   title: songData.data.song.title,
-      //   artistName: songData.data.song.artist_names,
-      //   imgUrl: songData.data.song.custom_song_art_image_url,
-      //   lyrics: lyricsData.data.lyrics.lyrics.body.html,
-      //   albums: albumsData.data.data.artist.discography.albums.items,
-      //   relatedArtists: relatedArtistsData.data.artists,
-      // };
+      const [songData, lyricsData, albumsData, relatedArtistsData] =
+        await Promise.all([
+          axios(songApiConfig),
+          axios(lyricsApiConfig),
+          axios(albumsApiConfig),
+          axios(relatedArtistsApiConfig),
+        ]);
+      console.log(songData);
+      console.log(lyricsData);
+      console.log(albumsData);
+      console.log(relatedArtistsData);
+      musicList[i] = {
+        ...musicList[i],
+        title: songData.data.song.title,
+        artistName: songData.data.song.artist_names,
+        imgUrl: songData.data.song.custom_song_art_image_url,
+        lyrics: lyricsData.data.lyrics.lyrics.body.html,
+        albums: albumsData.data.data.artist.discography.albums.items,
+        relatedArtists: relatedArtistsData.data.artists,
+      };
     } catch (err) {
       console.log(err);
     }
@@ -187,7 +152,7 @@ function apiConfig({ songId, artistId }) {
       url: "https://genius-song-lyrics1.p.rapidapi.com/song/details/",
       params: { id: songId },
       headers: {
-        "X-RapidAPI-Key": "fda3c325cfmshf34a513f522d47dp1870f9jsne32ab734941b",
+        "X-RapidAPI-Key": rapidApiKey,
         "X-RapidAPI-Host": "genius-song-lyrics1.p.rapidapi.com",
       },
     },
@@ -196,7 +161,7 @@ function apiConfig({ songId, artistId }) {
       url: "https://genius-song-lyrics1.p.rapidapi.com/song/lyrics/",
       params: { id: songId },
       headers: {
-        "X-RapidAPI-Key": "fda3c325cfmshf34a513f522d47dp1870f9jsne32ab734941b",
+        "X-RapidAPI-Key": rapidApiKey,
         "X-RapidAPI-Host": "genius-song-lyrics1.p.rapidapi.com",
       },
     },
@@ -209,7 +174,7 @@ function apiConfig({ songId, artistId }) {
         limit: "100",
       },
       headers: {
-        "X-RapidAPI-Key": "fda3c325cfmshf34a513f522d47dp1870f9jsne32ab734941b",
+        "X-RapidAPI-Key": rapidApiKey,
         "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
       },
     },
@@ -220,7 +185,7 @@ function apiConfig({ songId, artistId }) {
         id: artistId,
       },
       headers: {
-        "X-RapidAPI-Key": "fda3c325cfmshf34a513f522d47dp1870f9jsne32ab734941b",
+        "X-RapidAPI-Key": rapidApiKey,
         "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
       },
     },
@@ -263,6 +228,7 @@ function renderAlbums(albums) {
 
     const anchor = document.createElement("a");
     anchor.href = album.releases.items[0].sharingInfo.shareUrl;
+    anchor.target = "_blank";
 
     const imgDiv = document.createElement("div");
     imgDiv.className = "album-image-container";

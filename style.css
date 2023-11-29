@@ -139,13 +139,13 @@ input[type="range"]::-webkit-slider-runnable-track {
 .content-container {
   height: 80%;
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: repeat(1, 1fr);
+  position: relative;
 }
 
 #lyrics-el {
-  grid-area: 1 / 1 / -1 / -1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
   overflow-y: scroll;
 }
 #lyrics-el a {
@@ -155,7 +155,9 @@ input[type="range"]::-webkit-slider-runnable-track {
 
 #albums-el,
 #artists-el {
-  grid-area: 1 / 1 / -1 / -1;
+  position: absolute;
+  height: 100%;
+  width: 100%;
   display: flex;
   overflow-x: scroll;
 }
