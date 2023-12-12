@@ -8,20 +8,30 @@
 /* main div */
 .main {
   min-height: 100vh;
-  height: 100vh;
   width: 100%;
   background: url("https://images.unsplash.com/photo-1474540412665-1cdae210ae6b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1183&q=80")
     no-repeat;
   background-size: cover;
+}
+
+.universal-container {
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.contents {
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
 /* First section music player */
 .player {
   background: #f9f3cc;
-  height: 70%;
+  height: 500px;
   aspect-ratio: 2/3;
   border-radius: 20px;
   padding: 30px;
@@ -114,8 +124,8 @@ input[type="range"]::-webkit-slider-runnable-track {
 /* Second section Lyrics, Albums, Artist */
 .catalog {
   width: 700px;
-  height: 70%;
-  padding: 0 50px;
+  height: 500px;
+  padding-left: 50px;
   display: flex;
   flex-direction: column;
 }
@@ -126,13 +136,13 @@ input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;
   display: flex;
   align-items: center;
+  gap: 24px;
 }
 
 /* Nav links  */
 .tab-buttons-container > a {
   text-decoration: none;
   color: black;
-  margin-right: 30px;
 }
 
 /* content container */
@@ -190,4 +200,29 @@ input[type="range"]::-webkit-slider-runnable-track {
 
 .d-none {
   display: none !important;
+}
+
+@media (max-width: 768px) {
+  .contents {
+    flex-direction: column;
+  }
+  .catalog {
+    width: 100%;
+    margin-top: 48px;
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 425px) {
+  #albums-el,
+  #artists-el {
+    flex-direction: column;
+    align-items: center;
+  }
+  .tab-buttons-container {
+    justify-content: space-between;
+  }
+  .tab-buttons-container > a {
+    margin-right: 0;
+  }
 }

@@ -110,34 +110,27 @@ const rapidApiKey = "";
 getData();
 async function getData() {
   for (let i = 0; i < musicList.length; i++) {
-    const {
-      songApiConfig,
-      lyricsApiConfig,
-      albumsApiConfig,
-      relatedArtistsApiConfig,
-    } = apiConfig(musicList[i]);
+    // const {
+    //   lyricsApiConfig,
+    //   albumsApiConfig,
+    //   relatedArtistsApiConfig,
+    // } = apiConfig(musicList[i]);
 
     try {
-      const [songData, lyricsData, albumsData, relatedArtistsData] =
-        await Promise.all([
-          axios(songApiConfig),
-          axios(lyricsApiConfig),
-          axios(albumsApiConfig),
-          axios(relatedArtistsApiConfig),
-        ]);
-      console.log(songData);
-      console.log(lyricsData);
-      console.log(albumsData);
-      console.log(relatedArtistsData);
-      musicList[i] = {
-        ...musicList[i],
-        title: songData.data.song.title,
-        artistName: songData.data.song.artist_names,
-        imgUrl: songData.data.song.custom_song_art_image_url,
-        lyrics: lyricsData.data.lyrics.lyrics.body.html,
-        albums: albumsData.data.data.artist.discography.albums.items,
-        relatedArtists: relatedArtistsData.data.artists,
-      };
+      // const [lyricsData, albumsData, relatedArtistsData] =
+      //   await Promise.all([
+      //     axios(lyricsApiConfig),
+      //     axios(albumsApiConfig),
+      //     axios(relatedArtistsApiConfig),
+      //   ]);
+      //
+      //
+      // musicList[i] = {
+      //   ...musicList[i],
+      //   lyrics: lyricsData.data.lyrics.lyrics.body.html,
+      //   albums: albumsData.data.data.artist.discography.albums.items,
+      //   relatedArtists: relatedArtistsData.data.artists,
+      // };
     } catch (err) {
       console.log(err);
     }
